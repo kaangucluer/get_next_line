@@ -6,7 +6,7 @@
 /*   By: kgucluer <kgucluer@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 00:11:54 by kgucluer          #+#    #+#             */
-/*   Updated: 2023/07/22 14:24:49 by kgucluer         ###   ########.fr       */
+/*   Updated: 2023/07/24 15:27:37 by kgucluer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*ft_strchr(const char *str, int k)
 	if (!str)
 		return (0);
 	if (!k)
-		return (0);
+		return (NULL);
 	while (str[i] != '\0')
 	{
 		if (str[i] == k)
@@ -54,17 +54,23 @@ char	*ft_strjoin(char *line, char *data)
 		line[0] = '\0';
 	}
 	if (!line || !data)
-		return (0);
-	i = -1;
+	{
+		free(line);
+		return (NULL);
+	}
 	s3 = malloc(sizeof(char) * (ft_strlen(line) + ft_strlen(data) + 1));
 	if (!s3)
-		return (0);
-	while (line[++i] != 0)
+	{
+		free(s3);
+		return (NULL);
+	}
+	i = -1;
+	while (line[++i] != '\0')
 		s3[i] = line[i];
 	j = -1;
-	while (data[++j] != 0)
+	while (data[++j] != '\0')
 		s3[i + j] = data[j];
-	s3[i + j] = 0;
+	s3[i + j] = '\0';
 	free(line);
 	return (s3);
 }

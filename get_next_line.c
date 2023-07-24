@@ -6,7 +6,7 @@
 /*   By: kgucluer <kgucluer@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 00:11:51 by kgucluer          #+#    #+#             */
-/*   Updated: 2023/07/22 15:06:30 by kgucluer         ###   ########.fr       */
+/*   Updated: 2023/07/24 15:27:34 by kgucluer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*read_total_line(int fd, char *line)
 
 	data = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!data)
-		return (0);
+		return (NULL);
 	i = 1;
 	while (!ft_strchr(line, '\n') && i != 0)
 	{
@@ -28,13 +28,12 @@ char	*read_total_line(int fd, char *line)
 		if (i == -1)
 		{
 			free(data);
-			return (0);
+			free(line);
+			return (NULL);
 		}
 		data[i] = '\0';
 		line = ft_strjoin(line, data);
 	}
-	if (!line)
-		return (0);
 	free(data);
 	return (line);
 }
@@ -45,13 +44,16 @@ char	*read_newline(char *line)
 	char	*data;
 
 	i = 0;
-	if (!line)
+	if (!line[i])
 		return (0);
 	while (line[i] && line[i] != '\n')
 		i++;
 	data = (char *)malloc(sizeof(char) * (i + 2));
 	if (!data)
+	{
+		free(data);
 		return (0);
+	}
 	i = 0;
 	while (line[i] && line[i] != '\n')
 	{
@@ -74,8 +76,6 @@ char	*before_line_delete(char *line)
 	char	*data;
 
 	i = 0;
-	if (!line)
-		return (0);
 	while (line[i] && line[i] != '\n')
 		i++;
 	if (!line[i])
@@ -83,9 +83,12 @@ char	*before_line_delete(char *line)
 		free(line);
 		return (0);
 	}
-	data = (char *)malloc(sizeof(char) * (ft_strlen(line) - i));
+	data = malloc(sizeof(char) * (ft_strlen(line) - i + 1));
 	if (!data)
+	{
+		free(data);
 		return (0);
+	}
 	i++;
 	j = 0;
 	while (line[i])
@@ -104,8 +107,8 @@ char	*get_next_line(int fd)
 		return (0);
 	line = read_total_line(fd, line);
 	if (!line)
-		return (0);
+		return (NULL);
 	buffer = read_newline(line);
 	line = before_line_delete(line);
 	return (buffer);
-
+}
