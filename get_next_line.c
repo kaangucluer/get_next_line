@@ -6,7 +6,7 @@
 /*   By: kgucluer <kgucluer@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 00:11:51 by kgucluer          #+#    #+#             */
-/*   Updated: 2023/07/24 15:27:34 by kgucluer         ###   ########.fr       */
+/*   Updated: 2023/07/24 16:48:46 by kgucluer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,18 @@
 
 char	*read_total_line(int fd, char *line)
 {
-	char	*data;
+	char	data[BUFFER_SIZE + 1];
 	int		i;
 
-	data = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (!data)
-		return (NULL);
 	i = 1;
 	while (!ft_strchr(line, '\n') && i != 0)
 	{
 		i = read(fd, data, BUFFER_SIZE);
 		if (i == -1)
-		{
-			free(data);
-			free(line);
-			return (NULL);
-		}
+			return (free(line), NULL);
 		data[i] = '\0';
 		line = ft_strjoin(line, data);
 	}
-	free(data);
 	return (line);
 }
 
@@ -48,12 +40,9 @@ char	*read_newline(char *line)
 		return (0);
 	while (line[i] && line[i] != '\n')
 		i++;
-	data = (char *)malloc(sizeof(char) * (i + 2));
+	data = (char *)malloc(sizeof(char) * (i + 1 + (line[i] == '\n')));
 	if (!data)
-	{
-		free(data);
 		return (0);
-	}
 	i = 0;
 	while (line[i] && line[i] != '\n')
 	{
@@ -79,16 +68,10 @@ char	*before_line_delete(char *line)
 	while (line[i] && line[i] != '\n')
 		i++;
 	if (!line[i])
-	{
-		free(line);
-		return (0);
-	}
-	data = malloc(sizeof(char) * (ft_strlen(line) - i + 1));
+		return (free(line), NULL);
+	data = malloc(sizeof(char) * (ft_strlen(line) - i));
 	if (!data)
-	{
-		free(data);
-		return (0);
-	}
+		return (free(line), NULL);
 	i++;
 	j = 0;
 	while (line[i])
