@@ -1,6 +1,6 @@
 # INFORMATION
 
-# read_total_line:
+## read_total_line:
  Bu fonksiyon, verilen dosya tanıtıcısından (fd) okuma yaparak line dizisine satır satır veri ekleyen temel işlevdir. Fonksiyon, verilen dosyada EOF'a veya satır sonuna ulaşana kadar okuma işlemini devam ettirir ve her okuma işleminden sonra line dizisine veriyi ekler. Eğer bir hata oluşursa (read fonksiyonu -1 dönerse), hafızayı serbest bırakır ve NULL döndürür.
 
 # read_newline:
