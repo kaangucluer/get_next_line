@@ -1,4 +1,4 @@
-# function notifications
+# Function Notifications
 
  Bu fonksiyonlar, get_next_line.c dosyasında bulunan bir satırı okuyarak ve çağrıldıkça diğer satırları okuyarak dosyanın içeriğini işlemek için kullanılır. Bu işlevlerin birleşimi, dosyanın içeriğini satır satır okuma ve işleme işlevselliğini sağlar.
  
