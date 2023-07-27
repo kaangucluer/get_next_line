@@ -6,7 +6,7 @@
 /*   By: kgucluer <kgucluer@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 00:11:54 by kgucluer          #+#    #+#             */
-/*   Updated: 2023/07/24 16:13:26 by kgucluer         ###   ########.fr       */
+/*   Updated: 2023/07/27 15:39:18 by kgucluer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,7 @@ char	*ft_strjoin(char *line, char *data)
 	j = -1;
 	while (data[++j] != '\0')
 		s3[i + j] = data[j];
-	return (s3[i + j] = '\0', free(line), s3);
+	s3[i + j] = '\0';
+	free(line);
+	return (s3);
 }

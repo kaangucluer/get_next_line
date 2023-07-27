@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kgucluer <kgucluer@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/21 00:11:51 by kgucluer          #+#    #+#             */
-/*   Updated: 2023/07/24 16:48:46 by kgucluer         ###   ########.fr       */
+/*   Created: 2023/07/27 11:47:03 by kgucluer          #+#    #+#             */
+/*   Updated: 2023/07/27 15:03:29 by kgucluer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
 	line[fd] = read_total_line(fd, line[fd]);
-	if (!line)
+	if (!line[fd])
 		return (NULL);
 	buffer = read_newline(line[fd]);
 	line[fd] = before_line_delete(line[fd]);

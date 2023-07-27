@@ -6,7 +6,7 @@
 /*   By: kgucluer <kgucluer@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 00:11:51 by kgucluer          #+#    #+#             */
-/*   Updated: 2023/07/24 16:48:46 by kgucluer         ###   ########.fr       */
+/*   Updated: 2023/07/27 15:39:15 by kgucluer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ char	*read_total_line(int fd, char *line)
 	{
 		i = read(fd, data, BUFFER_SIZE);
 		if (i == -1)
-			return (free(line), NULL);
+		{
+			free(line);
+			return (NULL);
+		}
 		data[i] = '\0';
 		line = ft_strjoin(line, data);
 	}
@@ -68,10 +71,16 @@ char	*before_line_delete(char *line)
 	while (line[i] && line[i] != '\n')
 		i++;
 	if (!line[i])
-		return (free(line), NULL);
+	{
+		free(line);
+		return (NULL);
+	}
 	data = malloc(sizeof(char) * (ft_strlen(line) - i));
 	if (!data)
-		return (free(line), NULL);
+	{
+		free(line);
+		return (NULL);
+	}
 	i++;
 	j = 0;
 	while (line[i])
