@@ -9,7 +9,7 @@
  Bu fonksiyon, verilen line dizisindeki veriyi satır sonuna kadar ('\n' karakterine kadar) alarak yeni bir string oluşturan işlevdir. Eğer line dizisi boşsa veya satır sonu yoksa, NULL döndürür.
 
 # before_line_delete:
- Bu fonksiyon, verilen line dizisindeki veriyi satır başından itibaren ('\n' karakterinin hemen sonrasından) kopyalayarak yeni bir string oluşturan işlevdir. Eğer line dizisi boşsa veya satır sonu yoksa, NULL döndürür.
+ Bu fonksiyon, verilen line dizisindeki veriyi satır başından  satır sonuna kadar ('\n' karakterinin hemen öncesinden) silen işlevdir. Eğer line dizisi boşsa veya satır sonu yoksa, NULL döndürür.
 
 # get_next_line:
  Bu fonksiyon, read_total_line, read_newline ve before_line_delete fonksiyonlarını kullanarak dosyadan satır satır veri okuyan ve her çağrılışta bir sonraki satırı veren ana işlevdir. Fonksiyon, statik bir değişken olan line aracılığıyla dosya tanıtıcısına (fd) göre verileri saklar. Her çağrılışta line dizisi güncellenir ve bir sonraki satırı içerecek şekilde ayarlanır.
